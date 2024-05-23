@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html">
+	<title>Administración Principal</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<style>
+	body {
+		background-image: url('https://images5.alphacoders.com/133/thumb-1920-1338700.png');
+		background-size: cover;
+		background-attachment: fixed;
+		color: #ffffff;
+	}
+
+	.container {
+		background: rgba(0, 0, 0, 0.7);
+		padding: 20px;
+		border-radius: 10px;
+	}
+
+	h2 {
+		font-size: 48px;
+		font-weight: bold;
+		color: #FFD700;
+		text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+	}
+
+	.btn-outline-primary {
+		border-color: #FFD700;
+		color: #FFD700;
+		transition: all 0.3s ease;
+		font-size: 24px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	.btn-outline-primary:hover {
+		background-color: #FFD700;
+		color: #000;
+		transform: scale(1.1);
+	}
+
+	.btn-lg {
+		padding: 15px 25px;
+	}
+
+	.p-3 {
+		flex-basis: calc(33.333% - 1rem);
+		margin: 0.5rem;
+	}
+
+	.d-flex {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+</style>
+
+<body><br><br>
+	<div class="container p-4">
+		<center>
+			<h2>Administración Principal</h2>
+		</center><br><br>
+		<div class="d-flex justify-content-center">
+			<div class="p-3">
+				<a th:href="@{/verEntrenador}" class="btn btn-outline-primary btn-lg btn-block">Entrenadores</a>
+			</div>
+			<div class="p-3">
+				<a th:href="@{/verAsociacion}" class="btn btn-outline-primary btn-lg btn-block">Asociaciones</a>
+			</div>
+			<div class="p-3">
+				<a th:href="@{/verClub}" class="btn btn-outline-primary btn-lg btn-block">Clubes</a>
+			</div>
+			<div class="p-3">
+				<a th:href="@{/verJugador}" class="btn btn-outline-primary btn-lg btn-block">Jugadores</a>
+			</div>
+			<div class="p-3">
+				<a th:href="@{/verCompeticion}" class="btn btn-outline-primary btn-lg btn-block">Competiciones</a>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
