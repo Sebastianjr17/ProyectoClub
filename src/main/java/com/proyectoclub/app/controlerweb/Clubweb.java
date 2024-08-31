@@ -35,11 +35,11 @@ public class Clubweb {
 
 	@GetMapping({ "/verClub" })
 	public String verClub(Model model) {
-		List<Club> listaClub = clubcrud.findAll();
-		model.addAttribute("listaClub", listaClub);
-
-		return "verClub";
+	    List<Club> listaClub = clubcrud.findAllWithCompeticiones();
+	    model.addAttribute("listaClub", listaClub);
+	    return "verClub";
 	}
+
 
 	@GetMapping("/verClub/formClub")
 	public String mostrarFormulario(Model model) {

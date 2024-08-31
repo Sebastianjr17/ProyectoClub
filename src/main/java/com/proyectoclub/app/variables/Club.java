@@ -3,6 +3,7 @@ package com.proyectoclub.app.variables;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,9 +36,10 @@ public class Club {
 	@JoinColumn(name = "asociacion_id", referencedColumnName = "id")
 	private Asociacion asociacion;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "club_competicion", joinColumns = @JoinColumn(name = "club_id"), inverseJoinColumns = @JoinColumn(name = "competicion_id"))
 	private List<Competicion> competiciones;
+
 
 	public Club() {
 	}

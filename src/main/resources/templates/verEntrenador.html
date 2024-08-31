@@ -130,7 +130,6 @@
 		<table class="table table-dark table-hover">
 			<thead>
 				<tr>
-					<th>Id</th>
 					<th>Nombre</th>
 					<th>Apellido</th>
 					<th>Edad</th>
@@ -140,7 +139,6 @@
 			</thead>
 			<tbody>
 				<tr th:each="entrenador: ${listarEntrenador}">
-					<td th:text="${entrenador.id}"></td>
 					<td th:text="${entrenador.nombre}"></td>
 					<td th:text="${entrenador.apellido}"></td>
 					<td th:text="${entrenador.edad}"></td>

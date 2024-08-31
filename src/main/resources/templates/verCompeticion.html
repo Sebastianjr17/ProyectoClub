@@ -118,7 +118,6 @@
 		<table class="table table-dark table-hover">
 			<thead>
 				<tr>
-					<th>Id</th>
 					<th>Nombre</th>
 					<th>Monto de Premio</th>
 					<th>Fecha de Inicio</th>
@@ -128,7 +127,6 @@
 			</thead>
 			<tbody>
 				<tr th:each="competicion: ${listarCompeticion}">
-					<td th:text="${competicion.id}"></td>
 					<td th:text="${competicion.nombre}"></td>
 					<td th:text="${competicion.montoPremio}"></td>
 					<td th:text="${competicion.fechaInicio}"></td>

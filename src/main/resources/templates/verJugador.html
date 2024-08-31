@@ -118,7 +118,6 @@
 		<table class="table table-dark table-hover">
 			<thead>
 				<tr>
-					<th>Id</th>
 					<th>Nombre</th>
 					<th>Apellido</th>
 					<th>Número</th>
@@ -128,7 +127,6 @@
 			</thead>
 			<tbody>
 				<tr th:each="jugador: ${listarJugador}">
-					<td th:text="${jugador.id}"></td>
 					<td th:text="${jugador.nombre}"></td>
 					<td th:text="${jugador.apellido}"></td>
 					<td th:text="${jugador.numero}"></td>
