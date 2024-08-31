@@ -4,10 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="Content-Type" content="text/html">
-	<title>Administración Principal</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SportMaster</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="icon" type="image/png"
+		href="	https://static.vecteezy.com/system/resources/previews/023/731/547/non_2x/soccer-ball-icon-football-kick-illustration-sign-goal-symbol-or-logo-vector.jpg">
 </head>
 <style>
 	body {
@@ -15,71 +18,92 @@
 		background-size: cover;
 		background-attachment: fixed;
 		color: #ffffff;
+		margin: 0;
+		padding: 0;
 	}
 
 	.container {
 		background: rgba(0, 0, 0, 0.7);
-		padding: 20px;
+		padding: 30px;
 		border-radius: 10px;
+		margin: 50px auto;
+		max-width: 1200px;
+		width: 90%;
 	}
 
 	h2 {
-		font-size: 48px;
+		font-size: 2.5rem;
 		font-weight: bold;
-		color: #FFD700;
+		color: #FF4500;
 		text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+	.grid-container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+	}
+
+	@media (max-width: 992px) {
+		.grid-container {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 576px) {
+		.grid-container {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.button-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
 	}
 
 	.btn-outline-primary {
 		border-color: #FFD700;
 		color: #FFD700;
 		transition: all 0.3s ease;
-		font-size: 24px;
+		font-size: 1.2rem;
 		font-weight: bold;
 		text-transform: uppercase;
+		width: 100%;
+		padding: 15px;
+		border-radius: 15px;
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+		display: block;
 	}
 
 	.btn-outline-primary:hover {
 		background-color: #FFD700;
 		color: #000;
-		transform: scale(1.1);
-	}
-
-	.btn-lg {
-		padding: 15px 25px;
-	}
-
-	.p-3 {
-		flex-basis: calc(33.333% - 1rem);
-		margin: 0.5rem;
-	}
-
-	.d-flex {
-		flex-wrap: wrap;
-		justify-content: center;
+		transform: translateY(-3px) scale(1.05);
 	}
 </style>
 
-<body><br><br>
-	<div class="container p-4">
-		<center>
-			<h2>Administración Principal</h2>
-		</center><br><br>
-		<div class="d-flex justify-content-center">
-			<div class="p-3">
-				<a th:href="@{/verEntrenador}" class="btn btn-outline-primary btn-lg btn-block">Entrenadores</a>
+<body>
+	<div class="container">
+		<h2>SportMaster</h2>
+		<div class="grid-container">
+			<div class="button-wrapper">
+				<a th:href="@{/verEntrenador}" class="btn btn-outline-primary btn-lg">Entrenadores</a>
 			</div>
-			<div class="p-3">
-				<a th:href="@{/verAsociacion}" class="btn btn-outline-primary btn-lg btn-block">Asociaciones</a>
+			<div class="button-wrapper">
+				<a th:href="@{/verAsociacion}" class="btn btn-outline-primary btn-lg">Asociaciones</a>
 			</div>
-			<div class="p-3">
-				<a th:href="@{/verClub}" class="btn btn-outline-primary btn-lg btn-block">Clubes</a>
+			<div class="button-wrapper">
+				<a th:href="@{/verClub}" class="btn btn-outline-primary btn-lg">Clubes</a>
 			</div>
-			<div class="p-3">
-				<a th:href="@{/verJugador}" class="btn btn-outline-primary btn-lg btn-block">Jugadores</a>
+			<div class="button-wrapper">
+				<a th:href="@{/verJugador}" class="btn btn-outline-primary btn-lg">Jugadores</a>
 			</div>
-			<div class="p-3">
-				<a th:href="@{/verCompeticion}" class="btn btn-outline-primary btn-lg btn-block">Competiciones</a>
+			<div class="button-wrapper">
+				<a th:href="@{/verCompeticion}" class="btn btn-outline-primary btn-lg">Competiciones</a>
 			</div>
 		</div>
 	</div>

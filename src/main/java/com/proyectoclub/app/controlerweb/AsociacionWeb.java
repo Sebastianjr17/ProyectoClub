@@ -15,44 +15,43 @@ import com.proyectoclub.app.variables.Asociacion;
 @Controller
 public class AsociacionWeb {
 
-    @Autowired
-    private AsociacionCrud asociacionRepositorio;
+	@Autowired
+	private AsociacionCrud asociacionRepositorio;
 
-    @GetMapping({"/verAsociacion"})  
-    public String verAsociacion(Model model) {
-        List<Asociacion> listarAsociacion = asociacionRepositorio.findAll();
-        model.addAttribute("listarAsociacion", listarAsociacion);
-        
-        return "verAsociacion";
-    }
+	@GetMapping({ "/verAsociacion" })
+	public String verAsociacion(Model model) {
+		List<Asociacion> listarAsociacion = asociacionRepositorio.findAll();
+		model.addAttribute("listarAsociacion", listarAsociacion);
 
-    @GetMapping("/verAsociacion/formAsociacion")
-    public String mostrarFormulario(Model model) {
-        model.addAttribute("asociacion", new Asociacion());
-        return "formAsociacion";
-    }
+		return "verAsociacion";
+	}
 
-    @PostMapping("/guardarAsociacion")
-    public String guardarAsociacion(Asociacion asociacion) {
-        asociacionRepositorio.save(asociacion);
-        return "redirect:/verAsociacion";
-    }
+	@GetMapping("/verAsociacion/formAsociacion")
+	public String mostrarFormulario(Model model) {
+		model.addAttribute("asociacion", new Asociacion());
+		return "formAsociacion";
+	}
 
-    @GetMapping("/asociacion/editar/{id}")
-    public String modificarAsociacion(@PathVariable("id") Integer id, Model model) {
-        Asociacion asociacion = asociacionRepositorio.findById(id).orElse(null);
-        if (asociacion != null) {
-            model.addAttribute("asociacion", asociacion);
-            return "formAsociacion";
-        } else {
-            return "redirect:/verAsociacion";
-        }
-    }
+	@PostMapping("/guardarAsociacion")
+	public String guardarAsociacion(Asociacion asociacion) {
+		asociacionRepositorio.save(asociacion);
+		return "redirect:/verAsociacion";
+	}
 
-    @GetMapping("/asociacion/eliminar/{id}")
-    public String eliminarAsociacion(@PathVariable("id") Integer id) {
-        asociacionRepositorio.deleteById(id);
-        return "redirect:/verAsociacion";
-    }
+	@GetMapping("/asociacion/editar/{id}")
+	public String modificarAsociacion(@PathVariable("id") Integer id, Model model) {
+		Asociacion asociacion = asociacionRepositorio.findById(id).orElse(null);
+		if (asociacion != null) {
+			model.addAttribute("asociacion", asociacion);
+			return "formAsociacion";
+		} else {
+			return "redirect:/verAsociacion";
+		}
+	}
+
+	@GetMapping("/asociacion/eliminar/{id}")
+	public String eliminarAsociacion(@PathVariable("id") Integer id) {
+		asociacionRepositorio.deleteById(id);
+		return "redirect:/verAsociacion";
+	}
 }
-

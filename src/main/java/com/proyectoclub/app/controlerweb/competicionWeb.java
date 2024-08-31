@@ -15,43 +15,43 @@ import com.proyectoclub.app.variables.Competicion;
 @Controller
 public class competicionWeb {
 
-    @Autowired
-    private CompeticionCrud competicionRepositorio;
+	@Autowired
+	private CompeticionCrud competicionRepositorio;
 
-    @GetMapping("/verCompeticion")  
-    public String verCompeticion(Model model) {
-        List<Competicion> listarCompeticion = competicionRepositorio.findAll();
-        model.addAttribute("listarCompeticion", listarCompeticion);
-        
-        return "verCompeticion";
-    }
+	@GetMapping("/verCompeticion")
+	public String verCompeticion(Model model) {
+		List<Competicion> listarCompeticion = competicionRepositorio.findAll();
+		model.addAttribute("listarCompeticion", listarCompeticion);
 
-    @GetMapping("/verCompeticion/formCompeticion")
-    public String mostrarFormulario(Model model) {
-        model.addAttribute("competicion", new Competicion());
-        return "formCompeticion";
-    }
+		return "verCompeticion";
+	}
 
-    @PostMapping("/guardarCompeticion")
-    public String guardarCompeticion(Competicion competicion) {
-        competicionRepositorio.save(competicion);
-        return "redirect:/verCompeticion";
-    }
+	@GetMapping("/verCompeticion/formCompeticion")
+	public String mostrarFormulario(Model model) {
+		model.addAttribute("competicion", new Competicion());
+		return "formCompeticion";
+	}
 
-    @GetMapping("/competicion/editar/{id}")
-    public String modificarCompeticion(@PathVariable("id") Integer id, Model model) {
-        Competicion competicion = competicionRepositorio.findById(id).orElse(null);
-        if (competicion != null) {
-            model.addAttribute("competicion", competicion);
-            return "formCompeticion";
-        } else {
-            return "redirect:/verCompeticion";
-        }
-    }
+	@PostMapping("/guardarCompeticion")
+	public String guardarCompeticion(Competicion competicion) {
+		competicionRepositorio.save(competicion);
+		return "redirect:/verCompeticion";
+	}
 
-    @GetMapping("/competicion/eliminar/{id}")
-    public String eliminarCompeticion(@PathVariable("id") Integer id) {
-        competicionRepositorio.deleteById(id);
-        return "redirect:/verCompeticion";
-    }
+	@GetMapping("/competicion/editar/{id}")
+	public String modificarCompeticion(@PathVariable("id") Integer id, Model model) {
+		Competicion competicion = competicionRepositorio.findById(id).orElse(null);
+		if (competicion != null) {
+			model.addAttribute("competicion", competicion);
+			return "formCompeticion";
+		} else {
+			return "redirect:/verCompeticion";
+		}
+	}
+
+	@GetMapping("/competicion/eliminar/{id}")
+	public String eliminarCompeticion(@PathVariable("id") Integer id) {
+		competicionRepositorio.deleteById(id);
+		return "redirect:/verCompeticion";
+	}
 }

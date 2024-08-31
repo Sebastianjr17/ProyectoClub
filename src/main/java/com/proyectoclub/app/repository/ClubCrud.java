@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.proyectoclub.app.variables.Club;
 
-public interface ClubCrud extends JpaRepository<Club, Integer>{
+public interface ClubCrud extends JpaRepository<Club, Integer> {
 
 }

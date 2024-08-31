@@ -15,44 +15,43 @@ import com.proyectoclub.app.variables.Entrenador;
 @Controller
 public class EntrenadorWeb {
 
-    @Autowired
-    private EntrenadorCrud entrenadorRepositorio;
+	@Autowired
+	private EntrenadorCrud entrenadorRepositorio;
 
-    @GetMapping({"/verEntrenador"})  
-    public String verEntrenador(Model model) {
-        List<Entrenador> listarEntrenador = entrenadorRepositorio.findAll();
-        model.addAttribute("listarEntrenador", listarEntrenador);
-        
-        return "verEntrenador";
-    }
+	@GetMapping({ "/verEntrenador" })
+	public String verEntrenador(Model model) {
+		List<Entrenador> listarEntrenador = entrenadorRepositorio.findAll();
+		model.addAttribute("listarEntrenador", listarEntrenador);
 
-    @GetMapping("/verEntrenador/formEntrenador")
-    public String mostrarFormulario(Model model) {
-        model.addAttribute("entrenador", new Entrenador());
-        return "formEntrenador";
-    }
+		return "verEntrenador";
+	}
 
-    @PostMapping("/guardarEntrenador")
-    public String guardarEntrenador(Entrenador entrenador) {
-        entrenadorRepositorio.save(entrenador);
-        return "redirect:/verEntrenador";
-    }
+	@GetMapping("/verEntrenador/formEntrenador")
+	public String mostrarFormulario(Model model) {
+		model.addAttribute("entrenador", new Entrenador());
+		return "formEntrenador";
+	}
 
-    @GetMapping("/entrenador/editar/{id}")
-    public String modificarEntrenador(@PathVariable("id") Integer id, Model model) {
-        Entrenador entrenador = entrenadorRepositorio.findById(id).orElse(null);
-        if (entrenador != null) {
-            model.addAttribute("entrenador", entrenador);
-            return "formEntrenador";
-        } else {
-            return "redirect:/verEntrenador";
-        }
-    }
+	@PostMapping("/guardarEntrenador")
+	public String guardarEntrenador(Entrenador entrenador) {
+		entrenadorRepositorio.save(entrenador);
+		return "redirect:/verEntrenador";
+	}
 
-    @GetMapping("/entrenador/eliminar/{id}")
-    public String eliminarEntrenador(@PathVariable("id") Integer id) {
-        entrenadorRepositorio.deleteById(id);
-        return "redirect:/verEntrenador";
-    }
+	@GetMapping("/entrenador/editar/{id}")
+	public String modificarEntrenador(@PathVariable("id") Integer id, Model model) {
+		Entrenador entrenador = entrenadorRepositorio.findById(id).orElse(null);
+		if (entrenador != null) {
+			model.addAttribute("entrenador", entrenador);
+			return "formEntrenador";
+		} else {
+			return "redirect:/verEntrenador";
+		}
+	}
+
+	@GetMapping("/entrenador/eliminar/{id}")
+	public String eliminarEntrenador(@PathVariable("id") Integer id) {
+		entrenadorRepositorio.deleteById(id);
+		return "redirect:/verEntrenador";
+	}
 }
-
