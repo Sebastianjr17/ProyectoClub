@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html">
+	<title>Sobre Nosotros</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="icon" type="image/png"
+		href="https://static.vecteezy.com/system/resources/previews/023/731/547/non_2x/soccer-ball-icon-football-kick-illustration-sign-goal-symbol-or-logo-vector.jpg">
+	<style>
+		body {
+			background-image: url('https://images5.alphacoders.com/133/thumb-1920-1338700.png');
+			background-size: cover;
+			background-attachment: fixed;
+			color: #ffffff;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			background: rgba(0, 0, 0, 0.7);
+			padding: 30px;
+			border-radius: 10px;
+			margin: 50px auto;
+			max-width: 1200px;
+			width: 90%;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+		}
+
+		.about-content {
+			text-align: center;
+		}
+
+		h2 {
+			font-size: 2.5rem;
+			font-weight: bold;
+			color: #FF4500;
+			text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+			margin-bottom: 40px;
+		}
+
+		p {
+			font-size: 1.2rem;
+			line-height: 1.6;
+			margin: 15px 0;
+		}
+
+		.btn-outline-success {
+			border-color: #FFD700;
+			color: #FFD700;
+			transition: all 0.3s ease;
+			font-size: 1.2rem;
+			font-weight: bold;
+			text-transform: uppercase;
+			width: 100%;
+			padding: 15px;
+			border-radius: 15px;
+			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+		}
+
+		.btn-outline-success:hover {
+			background-color: #FFD700;
+			color: #000;
+			transform: translateY(-3px) scale(1.05);
+		}
+
+		.contact-form {
+			display: none;
+			margin-top: 30px;
+			max-width: 600px;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 20px;
+			background: rgba(0, 0, 0, 0.7);
+			border-radius: 10px;
+		}
+
+		.contact-form .form-group {
+			margin-bottom: 15px;
+		}
+
+		.contact-form .form-control {
+			border-radius: 15px;
+			padding: 10px;
+			background: #fff;
+			color: #000;
+		}
+
+		.contact-form .btn-submit {
+			background-color: #FFD700;
+			color: #000;
+			font-weight: bold;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 15px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+
+		.contact-form .btn-submit:hover {
+			background-color: #FFC107;
+		}
+
+		.alert {
+			display: none;
+			margin-top: 20px;
+		}
+
+		.show-form-btn {
+			margin-top: 20px;
+			background-color: #FF4500;
+			color: #fff;
+			font-weight: bold;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 15px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+
+		.show-form-btn:hover {
+			background-color: #FF6347;
+		}
+
+		.btn-start {
+			margin-top: 30px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="about-content">
+			<h2>Sobre Nosotros</h2>
+			<p><i class="fas fa-trophy"></i> ¡Bienvenido a <strong>SportMaster</strong>! Encuentra toda la información
+				que necesitas sobre Entrenadores, Asociaciones, Clubes, Jugadores y Competiciones.</p>
+
+			<p><i class="fas fa-star"></i> En <strong>SportMaster</strong>, nos apasiona el deporte. Ofrecemos
+				información actualizada para que disfrutes al máximo de tu pasión.</p>
+
+			<p><i class="fas fa-envelope"></i> ¿Tienes preguntas? Contáctanos y te ayudaremos con gusto.</p>
+
+			<button id="show-form-btn" class="show-form-btn">Enviar Mensaje</button>
+
+			<form id="contact-form" class="contact-form">
+				<div class="form-group">
+					<label for="name">Nombre:</label>
+					<input type="text" id="name" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="email">Correo Electrónico:</label>
+					<input type="email" id="email" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="message">Mensaje:</label>
+					<textarea id="message" class="form-control" rows="4" required></textarea>
+				</div>
+				<button type="submit" class="btn-submit">Enviar Mensaje</button>
+				<div id="response-message" class="alert alert-success"></div>
+			</form>
+		</div>
+		<div class="d-flex justify-content-center">
+			<div class="p-3">
+				<a th:href="@{/index}" class="btn btn-outline-success btn-start">Inicio</a>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+	<script>
+		document.getElementById('show-form-btn').addEventListener('click', function () {
+			const form = document.getElementById('contact-form');
+			if (form.style.display === 'none' || form.style.display === '') {
+				form.style.display = 'block';
+				this.textContent = 'Ocultar Formulario';
+			} else {
+				form.style.display = 'none';
+				this.textContent = 'Enviar Mensaje';
+			}
+		});
+
+		document.getElementById('contact-form').addEventListener('submit', function (event) {
+			event.preventDefault();
+			const name = document.getElementById('name').value;
+			const email = document.getElementById('email').value;
+			const message = document.getElementById('message').value;
+			document.getElementById('response-message').style.display = 'block';
+			document.getElementById('response-message').textContent = 'Gracias por tu mensaje, ' + name + '! Nos pondremos en contacto contigo pronto.';
+			this.reset(); 
+		});
+	</script>
+</body>
+
+</html>
