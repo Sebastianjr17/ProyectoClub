@@ -18,20 +18,17 @@
 			color: #ffffff;
 			margin: 0;
 			padding: 0;
+			font-family: 'Roboto', sans-serif;
 		}
 
 		.container {
-			background: rgba(0, 0, 0, 0.7);
-			padding: 30px;
+			background: rgba(0, 0, 0, 0.85);
+			padding: 20px;
 			border-radius: 10px;
 			margin: 50px auto;
-			max-width: 1200px;
+			max-width: 600px;
 			width: 90%;
-			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-			text-align: center;
-		}
-
-		.about-content {
+			box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
 			text-align: center;
 		}
 
@@ -39,52 +36,58 @@
 			font-size: 2.5rem;
 			font-weight: bold;
 			color: #FF4500;
-			text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
-			margin-bottom: 40px;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+			margin-bottom: 20px;
 		}
 
 		p {
 			font-size: 1.2rem;
 			line-height: 1.6;
-			margin: 15px 0;
+			margin-bottom: 15px;
 		}
 
 		.btn-outline-success {
 			border-color: #FFD700;
 			color: #FFD700;
 			transition: all 0.3s ease;
-			font-size: 1.2rem;
+			font-size: 1rem;
 			font-weight: bold;
 			text-transform: uppercase;
 			width: 100%;
-			padding: 15px;
-			border-radius: 15px;
+			padding: 12px;
+			border-radius: 10px;
 			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 		}
 
 		.btn-outline-success:hover {
 			background-color: #FFD700;
 			color: #000;
-			transform: translateY(-3px) scale(1.05);
+			transform: translateY(-2px) scale(1.03);
 		}
 
 		.contact-form {
-			display: none;
-			margin-top: 30px;
-			max-width: 600px;
+			margin-top: 20px;
+			max-width: 100%;
 			margin: 0 auto;
-			padding: 20px;
-			background: rgba(0, 0, 0, 0.7);
+			padding: 15px;
+			background: rgba(0, 0, 0, 0.85); /* Fondo igual al del contenedor */
 			border-radius: 10px;
 		}
 
 		.contact-form .form-group {
-			margin-bottom: 15px;
+			margin-bottom: 10px;
+			text-align: left;
+		}
+
+		.contact-form .form-group label {
+			display: block;
+			margin-bottom: 5px;
+			font-weight: bold;
 		}
 
 		.contact-form .form-control {
-			border-radius: 15px;
-			padding: 10px;
+			border-radius: 8px;
+			padding: 8px;
 			background: #fff;
 			color: #000;
 		}
@@ -94,8 +97,8 @@
 			color: #000;
 			font-weight: bold;
 			border: none;
-			padding: 10px 20px;
-			border-radius: 15px;
+			padding: 8px 12px;
+			border-radius: 8px;
 			cursor: pointer;
 			transition: background-color 0.3s ease;
 		}
@@ -106,11 +109,11 @@
 
 		.alert {
 			display: none;
-			margin-top: 20px;
+			margin-top: 10px;
 			background-color: #28a745;
 			color: #fff;
-			padding: 15px;
-			border-radius: 10px;
+			padding: 8px;
+			border-radius: 8px;
 		}
 
 		.show-form-btn {
@@ -132,8 +135,8 @@
 			background-color: #FF6347;
 		}
 
-		.btn-start {
-			margin-top: 30px;
+		.back-btn {
+			display: none;
 		}
 	</style>
 </head>
@@ -141,9 +144,9 @@
 <body>
 	<div class="container">
 		<div class="about-content">
-			<p><i class="fas fa-envelope"></i> ¿Tienes preguntas? Contáctanos y te ayudaremos con gusto.</p>
-
-			<button id="show-form-btn" class="show-form-btn">Enviar Mensaje</button>
+			<h2>Contáctanos</h2>
+			<p><i class="fas fa-envelope"></i> ¿Tienes preguntas? Envíanos un mensaje y te responderemos lo antes
+				posible.</p>
 
 			<form id="contact-form" class="contact-form">
 				<div class="form-group">
@@ -158,14 +161,14 @@
 					<label for="message">Mensaje:</label>
 					<textarea id="message" class="form-control" rows="4" required></textarea>
 				</div>
-				<button type="submit" class="btn-submit">Enviar Mensaje</button>
+				<button type="submit" class="btn-submit">Enviar</button>
 			</form>
 
 			<div id="response-message" class="alert"></div>
 		</div>
-		<div class="d-flex justify-content-center">
-			<div class="p-3">
-				<a th:href="@{/index}" class="btn btn-outline-success btn-start">Inicio</a>
+		<div id="navbar-buttons" class="d-flex justify-content-center mt-2">
+			<div class="p-2">
+				<a th:href="@{/index}" id="navbar-home-btn" class="btn btn-outline-success">Inicio</a>
 			</div>
 		</div>
 	</div>
@@ -174,14 +177,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
 	<script>
-		document.getElementById('show-form-btn').addEventListener('click', function () {
-			const form = document.getElementById('contact-form');
-			if (form.style.display === 'none' || form.style.display === '') {
-				form.style.display = 'block';
-				this.style.display = 'none';
-			}
-		});
-
 		document.getElementById('contact-form').addEventListener('submit', function (event) {
 			event.preventDefault();
 			const name = document.getElementById('name').value;
@@ -189,12 +184,10 @@
 			responseMessage.style.display = 'block';
 			responseMessage.textContent = 'Gracias por tu mensaje, ' + name + '! Nos pondremos en contacto contigo pronto.';
 			this.reset();
-			this.style.display = 'none';
-			document.getElementById('show-form-btn').style.display = 'block';
 
 			setTimeout(function () {
 				responseMessage.style.display = 'none';
-			}, 5000);
+			}, 3000);
 		});
 	</script>
 </body>
