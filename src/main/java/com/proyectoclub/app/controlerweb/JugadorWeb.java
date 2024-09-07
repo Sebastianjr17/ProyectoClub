@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.proyectoclub.app.repository.JugadorCrud;
+import com.proyectoclub.app.repository.ClubCrud; 
 import com.proyectoclub.app.variables.Jugador;
+import com.proyectoclub.app.variables.Club; 
 
 @Controller
 public class JugadorWeb {
 
 	@Autowired
 	private JugadorCrud jugadorRepositorio;
+
+	@Autowired
+	private ClubCrud clubRepositorio;
 
 	@GetMapping({ "/verJugador" })
 	public String verJugador(Model model) {
@@ -29,6 +34,8 @@ public class JugadorWeb {
 	@GetMapping("/verJugador/formJugador")
 	public String mostrarFormulario(Model model) {
 		model.addAttribute("jugador", new Jugador());
+		List<Club> clubs = clubRepositorio.findAll(); // Obtener todos los clubes
+		model.addAttribute("clubs", clubs); // Agregar la lista de clubes al modelo
 		return "formJugador";
 	}
 
@@ -43,6 +50,8 @@ public class JugadorWeb {
 		Jugador jugador = jugadorRepositorio.findById(id).orElse(null);
 		if (jugador != null) {
 			model.addAttribute("jugador", jugador);
+			List<Club> clubs = clubRepositorio.findAll(); 
+			model.addAttribute("clubs", clubs); 
 			return "formJugador";
 		} else {
 			return "redirect:/verJugador";

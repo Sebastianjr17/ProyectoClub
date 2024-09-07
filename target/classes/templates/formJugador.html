@@ -17,7 +17,7 @@
 		href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Source+Serif+Pro&display=swap"
 		rel="stylesheet">
 	<link rel="icon" type="image/png"
-		href="	https://static.vecteezy.com/system/resources/previews/023/731/547/non_2x/soccer-ball-icon-football-kick-illustration-sign-goal-symbol-or-logo-vector.jpg">
+		href="https://static.vecteezy.com/system/resources/previews/023/731/547/non_2x/soccer-ball-icon-football-kick-illustration-sign-goal-symbol-or-logo-vector.jpg">
 	<style>
 		body {
 			background-image: url('https://images5.alphacoders.com/133/thumb-1920-1338700.png');
@@ -145,6 +145,14 @@
 					th:errors="*{posicion}"></small>
 				<label for="posicion" class="form-label">Posición: </label>
 			</div>
+
+			<div class="mb-3 form-floating">
+				<select th:field="*{club}" class="form-select" required>
+					<option th:each="club : ${clubs}" th:value="${club.id}" th:text="${club.nombre}"></option>
+				</select>
+				<label for="club" class="form-label">Club:</label>
+			</div>
+
 
 			<div class="d-flex mb-3">
 				<input type="submit" class="btn btn-outline-dark me-4" value="Enviar">

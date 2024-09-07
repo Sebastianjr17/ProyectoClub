@@ -3,8 +3,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="Content-Type" content="text/html">
-	<title>Sobre Nosotros</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Contáctanos</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/styles.css">
@@ -28,6 +28,7 @@
 			max-width: 1200px;
 			width: 90%;
 			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+			text-align: center;
 		}
 
 		.about-content {
@@ -71,8 +72,7 @@
 			display: none;
 			margin-top: 30px;
 			max-width: 600px;
-			margin-left: auto;
-			margin-right: auto;
+			margin: 0 auto;
 			padding: 20px;
 			background: rgba(0, 0, 0, 0.7);
 			border-radius: 10px;
@@ -107,6 +107,10 @@
 		.alert {
 			display: none;
 			margin-top: 20px;
+			background-color: #28a745;
+			color: #fff;
+			padding: 15px;
+			border-radius: 10px;
 		}
 
 		.show-form-btn {
@@ -119,6 +123,9 @@
 			border-radius: 15px;
 			cursor: pointer;
 			transition: background-color 0.3s ease;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
 		}
 
 		.show-form-btn:hover {
@@ -134,13 +141,6 @@
 <body>
 	<div class="container">
 		<div class="about-content">
-			<h2>Sobre Nosotros</h2>
-			<p><i class="fas fa-trophy"></i> ¡Bienvenido a <strong>SportMaster</strong>! Encuentra toda la información
-				que necesitas sobre Entrenadores, Asociaciones, Clubes, Jugadores y Competiciones.</p>
-
-			<p><i class="fas fa-star"></i> En <strong>SportMaster</strong>, nos apasiona el deporte. Ofrecemos
-				información actualizada para que disfrutes al máximo de tu pasión.</p>
-
 			<p><i class="fas fa-envelope"></i> ¿Tienes preguntas? Contáctanos y te ayudaremos con gusto.</p>
 
 			<button id="show-form-btn" class="show-form-btn">Enviar Mensaje</button>
@@ -159,8 +159,9 @@
 					<textarea id="message" class="form-control" rows="4" required></textarea>
 				</div>
 				<button type="submit" class="btn-submit">Enviar Mensaje</button>
-				<div id="response-message" class="alert alert-success"></div>
 			</form>
+
+			<div id="response-message" class="alert"></div>
 		</div>
 		<div class="d-flex justify-content-center">
 			<div class="p-3">
@@ -177,21 +178,23 @@
 			const form = document.getElementById('contact-form');
 			if (form.style.display === 'none' || form.style.display === '') {
 				form.style.display = 'block';
-				this.textContent = 'Ocultar Formulario';
-			} else {
-				form.style.display = 'none';
-				this.textContent = 'Enviar Mensaje';
+				this.style.display = 'none';
 			}
 		});
 
 		document.getElementById('contact-form').addEventListener('submit', function (event) {
 			event.preventDefault();
 			const name = document.getElementById('name').value;
-			const email = document.getElementById('email').value;
-			const message = document.getElementById('message').value;
-			document.getElementById('response-message').style.display = 'block';
-			document.getElementById('response-message').textContent = 'Gracias por tu mensaje, ' + name + '! Nos pondremos en contacto contigo pronto.';
-			this.reset(); 
+			const responseMessage = document.getElementById('response-message');
+			responseMessage.style.display = 'block';
+			responseMessage.textContent = 'Gracias por tu mensaje, ' + name + '! Nos pondremos en contacto contigo pronto.';
+			this.reset();
+			this.style.display = 'none';
+			document.getElementById('show-form-btn').style.display = 'block';
+
+			setTimeout(function () {
+				responseMessage.style.display = 'none';
+			}, 5000);
 		});
 	</script>
 </body>

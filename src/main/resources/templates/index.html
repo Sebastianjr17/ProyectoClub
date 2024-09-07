@@ -3,188 +3,229 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="Content-Type" content="text/html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>SportMaster</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-	<link rel="stylesheet" href="assets/css/styles.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
 	<link rel="icon" type="image/png"
 		href="https://static.vecteezy.com/system/resources/previews/023/731/547/non_2x/soccer-ball-icon-football-kick-illustration-sign-goal-symbol-or-logo-vector.jpg">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 	<style>
-		body {
-			background-image: url('https://images5.alphacoders.com/133/thumb-1920-1338700.png');
-			background-size: cover;
-			background-attachment: fixed;
-			color: #ffffff;
+		body,
+		html {
 			margin: 0;
 			padding: 0;
+			font-family: 'Oswald', sans-serif;
+			height: 100%;
+			overflow-x: hidden;
 		}
 
-		.header {
-			background: rgba(0, 0, 0, 0.8);
-			padding: 20px;
-			border-radius: 10px;
-			text-align: center;
-			position: relative;
-			margin-bottom: 30px;
+		.navbar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			background-color: rgba(0, 0, 0, 0.7);
+			padding: 10px 15px;
+			z-index: 1000;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 		}
 
-		.header img {
-			width: 50px;
-			height: 50px;
-			margin-right: 15px;
-			vertical-align: middle;
-		}
-
-		.header h1 {
-			display: inline-block;
-			font-size: 2.5rem;
-			color: #FF4500;
+		.navbar ul {
+			list-style-type: none;
 			margin: 0;
-			text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+			padding: 0;
+			display: flex;
+			gap: 15px;
 		}
 
-		.header nav a {
+		.navbar li {
+			margin: 0;
+		}
+
+		.navbar a {
 			color: #FFD700;
-			font-size: 1.2rem;
-			font-weight: bold;
-			margin: 0 15px;
-			text-transform: uppercase;
 			text-decoration: none;
+			font-size: 16px;
+			font-weight: bold;
 			transition: color 0.3s ease;
 		}
 
-		.header nav a:hover {
+		.navbar a:hover {
 			color: #FF4500;
 		}
 
-		.container {
-			background: rgba(0, 0, 0, 0.7);
-			padding: 30px;
-			border-radius: 10px;
-			margin: 0 auto;
-			max-width: 1200px;
-			width: 90%;
+		.menu-toggle {
+			display: none;
+			font-size: 24px;
+			color: #FFD700;
+			background: none;
+			border: none;
+			cursor: pointer;
 		}
 
-		.grid-container {
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20px;
+			text-align: center;
+			background-image: url('https://images5.alphacoders.com/133/thumb-1920-1338700.png');
+			background-size: cover;
+			background-position: center;
+			position: relative;
+			min-height: 100vh;
+			color: white;
+		}
+
+		.container::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: 0;
+		}
+
+		.content-box {
+			position: relative;
+			z-index: 1;
+			width: 90%;
+			max-width: 1200px;
+			padding: 20px;
+			background-color: rgba(0, 0, 0, 0.6);
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+			margin-bottom: 20px;
+		}
+
+		.hero-content {
+			margin-top: 80px;
+		}
+
+		.hero-content h1 {
+			font-size: 2.5rem;
+			margin-bottom: 20px;
+		}
+
+		.hero-content p {
+			font-size: 1.125rem;
+			line-height: 1.6;
+			margin-bottom: 40px;
+		}
+
+		.features {
 			display: grid;
-			grid-template-columns: repeat(3, 1fr);
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 			gap: 20px;
 		}
 
-		@media (max-width: 992px) {
-			.grid-container {
-				grid-template-columns: repeat(2, 1fr);
-			}
-		}
-
-		@media (max-width: 576px) {
-			.grid-container {
-				grid-template-columns: 1fr;
-			}
-		}
-
-		.button-wrapper {
-			display: flex;
-			justify-content: center;
-			align-items: center;
+		.feature {
+			background-color: rgba(255, 255, 255, 0.9);
+			border-radius: 8px;
+			padding: 20px;
 			text-align: center;
+			color: #333;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 		}
 
-		.btn-outline-primary {
-			border-color: #FFD700;
-			color: #FFD700;
-			transition: all 0.3s ease;
-			font-size: 1.2rem;
-			font-weight: bold;
-			text-transform: uppercase;
-			width: 100%;
-			padding: 15px;
-			border-radius: 15px;
-			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-			display: block;
+		.feature i {
+			font-size: 24px;
+			color: #4a90e2;
+			margin-bottom: 10px;
 		}
 
-		.btn-outline-primary i {
-			margin-right: 10px;
+		.feature h2 {
+			font-size: 1.25rem;
+			margin-bottom: 10px;
 		}
 
-		.btn-outline-primary:hover {
-			background-color: #FFD700;
-			color: #000;
-			transform: translateY(-3px) scale(1.05);
+		.feature p {
+			font-size: 0.875rem;
+			margin-bottom: 0;
 		}
 
-		@media (max-width: 576px) {
-			.header h1 {
-				font-size: 1.8rem;
-				text-align: center;
-				margin-bottom: 10px;
-			}
-
-			.header img {
-				width: 40px;
-				height: 40px;
-			}
-
-			.header {
-				padding: 10px;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-			}
-
-			.header nav {
-				text-align: center;
-			}
-
-			.header nav a {
+		@media (max-width: 599px) {
+			.menu-toggle {
 				display: block;
-				margin: 5px 0;
-				font-size: 1rem;
+			}
+
+			.navbar ul {
+				display: none;
+				flex-direction: column;
+				width: 100%;
+				align-items: center;
+				position: absolute;
+				top: 60px;
+				left: 0;
+				background: rgba(0, 0, 0, 0.9);
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+				z-index: 1001;
+			}
+
+			.navbar ul.active {
+				display: flex;
+			}
+
+			.features {
+				grid-template-columns: 1fr;
+				gap: 10px;
 			}
 		}
 	</style>
 </head>
 
 <body>
-	<header class="header">
-		<h1>SportMaster</h1>
-	</header>
+	<nav class="navbar">
+		<button class="menu-toggle"><i class="fas fa-bars"></i></button>
+		<ul>
+			<li><a href="/verEntrenador" th:href="@{/verEntrenador}"><i class="fas fa-users"></i> Entrenadores</a></li>
+			<li><a href="/verAsociacion" th:href="@{/verAsociacion}"><i class="fas fa-handshake"></i> Asociaciones</a>
+			</li>
+			<li><a href="/verCompeticion" th:href="@{/verCompeticion}"><i class="fas fa-trophy"></i> Competiciones</a>
+			</li>
+			<li><a href="/verClub" th:href="@{/verClub}"><i class="fas fa-futbol"></i> Clubes</a></li>
+			<li><a href="/verJugador" th:href="@{/verJugador}"><i class="fas fa-running"></i> Jugadores</a></li>
+			<li><a href="/verContactanos" th:href="@{/verContactanos}"><i class="fas fa-info-circle"></i>Contáctanos</a></li>
+		</ul>
+	</nav>
 	<div class="container">
-		<div class="grid-container">
-			<div class="button-wrapper">
-				<a th:href="@{/verJugador}" class="btn btn-outline-primary btn-lg"><i class="fas fa-running"></i>
-					Jugadores</a>
+		<div class="hero-content content-box">
+			<h1>SportMaster</h1>
+			<p>Contamos con alternativas dinámicas y entretenidas que propenden por la formación del deportista integral
+				a través de prácticas lúdicas, formativas y competitivas que contribuyen a mejorar las capacidades
+				físicas, mentales, emocionales y socio afectivas de los deportistas.</p>
+		</div>
+		<div class="features content-box">
+			<div class="feature">
+				<i class="fas fa-trophy"></i>
+				<h2>Programa</h2>
+				<p>Se viene desarrollando desde el año 2008 la enseñanza del fútbol como instrumento forjador de paz,
+					habilidades, destrezas y competencias en niños y jóvenes.</p>
 			</div>
-			<div class="button-wrapper">
-				<a th:href="@{/verEntrenador}" class="btn btn-outline-primary btn-lg"><i class="fas fa-users"></i>
-					Entrenadores</a>
+			<div class="feature">
+				<i class="fas fa-bullseye"></i>
+				<h2>Objetivo</h2>
+				<p>Contribuir en la formación integral de niños y jóvenes de población vulnerable a través de la
+					práctica del fútbol.</p>
 			</div>
-			<div class="button-wrapper">
-				<a th:href="@{/verAsociacion}" class="btn btn-outline-primary btn-lg"><i class="fas fa-handshake"></i>
-					Asociaciones</a>
-			</div>
-			<div class="button-wrapper">
-				<a th:href="@{/verCompeticion}" class="btn btn-outline-primary btn-lg"><i class="fas fa-trophy"></i>
-					Competiciones</a>
-			</div>
-			<div class="button-wrapper">
-				<a th:href="@{/verClub}" class="btn btn-outline-primary btn-lg"><i class="fas fa-futbol"></i> Clubes</a>
-			</div>
-
-			<div class="button-wrapper">
-				<a th:href="@{/verSobreNosotros}" class="btn btn-outline-primary btn-lg"><i
-						class="fas fa-info-circle"></i>
-					Sobre Nosotros</a>
+			<div class="feature">
+				<i class="fas fa-bolt"></i>
+				<h2>Grupo</h2>
+				<p>Niños, niñas y jóvenes que estén matriculados en algún grado de nivel de educación básica y media en
+					un establecimiento educativo en convenio con la escuela.</p>
 			</div>
 		</div>
 	</div>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+	<script>
+		document.querySelector('.menu-toggle').addEventListener('click', function () {
+			document.querySelector('.navbar ul').classList.toggle('active');
+		});
+	</script>
 </body>
 
 </html>
