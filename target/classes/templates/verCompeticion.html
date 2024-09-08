@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/styles.css">
 	<link rel="icon" type="image/png"
-		href="	https://static.vecteezy.com/system/resources/previews/023/731/547/non_2x/soccer-ball-icon-football-kick-illustration-sign-goal-symbol-or-logo-vector.jpg">
+		href="https://static.vecteezy.com/system/resources/previews/023/731/547/non_2x/soccer-ball-icon-football-kick-illustration-sign-goal-symbol-or-logo-vector.jpg">
 	<style>
 		body {
 			background-image: url('https://images5.alphacoders.com/133/thumb-1920-1338700.png');
@@ -37,7 +37,6 @@
 			margin-bottom: 40px;
 			text-align: center;
 		}
-
 
 		table {
 			background: rgba(255, 255, 255, 0.1);
@@ -110,12 +109,14 @@
 			transform: scale(1.1);
 		}
 	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
 </head>
 
 <body>
 	<div class="container">
 		<h2>Competiciones</h2>
-		<table class="table table-dark table-hover">
+		<table class="table table-dark table-hover" id="competitions-table">
 			<thead>
 				<tr>
 					<th>Nombre</th>
@@ -143,6 +144,9 @@
 		</table>
 		<div class="d-flex justify-content-center">
 			<div class="p-3">
+				<button id="generate-pdf" class="btn btn-outline-primary">Generar PDF</button>
+			</div>
+			<div class="p-3">
 				<a th:href="@{/verCompeticion/formCompeticion}" class="btn btn-outline-primary">Insertar Competición</a>
 			</div>
 			<div class="p-3">
@@ -153,6 +157,36 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+	<script>
+		document.getElementById('generate-pdf').addEventListener('click', function () {
+			const table = document.getElementById('competitions-table');
+			const docDefinition = {
+				content: [
+					{text: 'Competiciones', style: 'header'},
+					{
+						table: {
+							headerRows: 1,
+							widths: ['*', '*', '*', '*'],
+							body: [
+								['Nombre', 'Monto de Premio', 'Fecha de Inicio', 'Fecha de Fin'],
+								...Array.from(table.querySelectorAll('tbody tr')).map(row =>
+									Array.from(row.querySelectorAll('td')).slice(0, 4).map(cell => cell.textContent)
+								)
+							]
+						}
+					}
+				],
+				styles: {
+					header: {
+						fontSize: 18,
+						bold: true,
+						margin: [0, 0, 0, 10]
+					}
+				}
+			};
+			pdfMake.createPdf(docDefinition).download('competiciones.pdf');
+		});
+	</script>
 </body>
 
 </html>

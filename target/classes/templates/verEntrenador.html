@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/styles.css">
 	<link rel="icon" type="image/png"
-		href="	https://static.vecteezy.com/system/resources/previews/023/731/547/non_2x/soccer-ball-icon-football-kick-illustration-sign-goal-symbol-or-logo-vector.jpg">
+		href="https://static.vecteezy.com/system/resources/previews/023/731/547/non_2x/soccer-ball-icon-football-kick-illustration-sign-goal-symbol-or-logo-vector.jpg">
 </head>
 <style>
 	body {
@@ -127,7 +127,7 @@
 <body>
 	<div class="container">
 		<h2>Entrenadores</h2>
-		<table class="table table-dark table-hover">
+		<table class="table table-dark table-hover" id="trainers-table">
 			<thead>
 				<tr>
 					<th>Nombre</th>
@@ -144,16 +144,17 @@
 					<td th:text="${entrenador.edad}"></td>
 					<td th:text="${entrenador.nacionalidad}"></td>
 					<td>
-						<a class="btn btn-info btn-xs" th:href="@{'/entrenador/editar/' + ${entrenador.id}}"
-							th:text="'editar'"></a>
+						<a class="btn btn-info btn-xs" th:href="@{'/entrenador/editar/' + ${entrenador.id}}" th:text="'editar'"></a>
 						&nbsp; &nbsp;
-						<a class="btn btn-danger btn-xs" th:href="@{'/entrenador/eliminar/' + ${entrenador.id}}"
-							th:text="'eliminar'"></a>
+						<a class="btn btn-danger btn-xs" th:href="@{'/entrenador/eliminar/' + ${entrenador.id}}" th:text="'eliminar'"></a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="d-flex justify-content-center">
+			<div class="p-3">
+				<button id="generate-pdf" class="btn btn-outline-primary">Generar PDF</button>
+			</div>
 			<div class="p-3">
 				<a th:href="@{/verEntrenador/formEntrenador}" class="btn btn-outline-primary">Insertar Entrenador</a>
 			</div>
@@ -162,9 +163,43 @@
 			</div>
 		</div>
 	</div>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+
+	<script>
+		document.getElementById('generate-pdf').addEventListener('click', function () {
+			const table = document.getElementById('trainers-table');
+			const docDefinition = {
+				content: [
+					{text: 'Entrenadores', style: 'header'},
+					{
+						table: {
+							headerRows: 1,
+							widths: ['*', '*', '*', '*'],
+							body: [
+								['Nombre', 'Apellido', 'Edad', 'Nacionalidad'],
+								...Array.from(table.querySelectorAll('tbody tr')).map(row =>
+									Array.from(row.querySelectorAll('td')).slice(0, 4).map(cell => cell.textContent)
+								)
+							]
+						}
+					}
+				],
+				styles: {
+					header: {
+						fontSize: 18,
+						bold: true,
+						margin: [0, 0, 0, 10]
+					}
+				}
+			};
+			pdfMake.createPdf(docDefinition).download('entrenadores.pdf');
+		});
+	</script>
 </body>
 
 </html>
